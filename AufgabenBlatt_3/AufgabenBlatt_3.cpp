@@ -53,7 +53,7 @@ void aufgabe_2()
 void aufgabe_3()
 {
 	//zustand automat
-	enum Zeichen 
+	enum Zeichen
 	{
 		Start,
 		H,
@@ -63,89 +63,95 @@ void aufgabe_3()
 		Uebergang,
 	};
 
-	char eingabe; 
-	int a = 0, h = 0; 
+	char eingabe;
+	int a = 0, h = 0;
 	bool Z;
-	
 
 
-	Zeichen Zustand = Start; 
+
+	Zeichen Zustand = Start;
 
 	while (Zustand != Fehler && Zustand != Uebergang)
 	{
-			cout << "geben sie ein zeichen ein";
-			cin >> eingabe;
+		cout << "geben sie ein zeichen ein";
+		cin >> eingabe;
 
-			switch (Zustand)
+		switch (Zustand)
+		{
+
+		case Start: {
+			if (eingabe == 'h')
 			{
+				Zustand = H;
+				h++;
+			}
+			else
+			{
+				Zustand = Fehler;
 
-			case Start:
-				if (eingabe == 'h')
-				{
-					Zustand = H;
-					h++;
-				}
-				else
-				{
-					Zustand = Fehler;
-		
-				}
-				break;
-
-			case H:
-				if (eingabe == 'a')
-				{
-					Zustand = A;
-					a++;
-				}
-				else
-				{
-					Zustand = Fehler;
-				}
-				break;
-
-			case A:
-				if (eingabe == 'H')
-				{
-					Zustand = H;
-					Z = 1;
-				}
-				else if (eingabe == '!')
-				{
-					Zustand = Uebergang;
-					h++;
-				}
-				else
-				{
-					Zustand = Fehler;
-					break;
-				}
-
-			default: cout << "Dumm gelaufen ";
 
 			}
-	}
-	switch (Zustand)
-	{
-	case Fehler: cout << "Das Wort Entspricht nicht unserer Sprache";
-		break;
-	case Uebergang: cout << "Das Wort entspricht unseren Wünschen" << endl;
-		break;
-	default:
-		cout << "Fehler";
+			break;
+		}
+		case H: {
+			if (eingabe == 'a')
+			{
+				Zustand = A;
+				a++;
+			}
+			else
+			{
+				Zustand = Fehler;
+			}
+			break;
+		}
+		case A: {
+			if (eingabe == 'h')
+			{
+				Zustand = H;
+				h++;
+			}
+			else if (eingabe == '!')
+			{
+				Zustand = Uebergang;
+				Z = 1;
+			}
+			else
+			{
+				Zustand = Fehler;
+				break;
+			}
+		}
+		default: cout << "Dumm gelaufen ";
+
+		}
 	}
 
-	if (a == h && Z && !Fehler)
+
+	switch (Zustand)
 	{
-		int zwisch = (a+h)/2 ; 
-		int j = 0; 
-		for (j; j > zwisch; j++)
+	case Fehler: { cout << "Das Wort Entspricht nicht unserer Sprache"; }
+			   break;
+
+	case Uebergang: { cout << "Das Wort entspricht unseren Wuenschen" << endl;
+
+		int zwisch;
+		int j;
+		zwisch = (a + h) / 2;
+	
+
+		for (zwisch; 0 < zwisch; zwisch--)
 		{
 			cout << "ha";
 		}
 		cout << "!";
 	}
+				  break;
+
+	default:
+		cout << "Fehler";
+	}
 
 
-
+}
 	
